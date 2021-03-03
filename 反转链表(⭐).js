@@ -1,0 +1,52 @@
+// 题目
+// https://leetcode-cn.com/problems/reverse-linked-list/
+
+
+
+
+// 解题
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseList = function(head) {
+    if (head === null) {
+        return null
+    }
+    // 第一种、迭代
+    // const stack = []
+    // let current = head
+    // while(current) {
+    //     stack.push(current.val)
+    //     current = current.next
+    // }
+    // for (let i = stack.length - 1; i >= 0; i--) {
+        
+    //     if (i === stack.length - 1) {
+    //         head = current = new ListNode(stack[i])
+    //     } else {
+    //         current.next = new ListNode(stack[i])
+    //         current = current.next
+    //     }
+    // }
+    // return head
+    // 第二种 、递归
+    const recursion = (node) => {
+        if (node.next === null) {
+            head = node
+            return node
+        }
+        const prev = recursion(node.next)
+        prev.next = new ListNode(node.val)
+        return prev.next
+    }
+    recursion(head)
+    return head
+};
