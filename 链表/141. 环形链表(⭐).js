@@ -1,0 +1,39 @@
+
+// https://leetcode-cn.com/problems/linked-list-cycle/
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+ var hasCycle = function(head) {
+  if (head === null || head.next === null) {
+      return false
+  }
+  let slow = head
+  let fast = head.next
+  // 相遇说明是环形
+  while(slow !== fast) {
+     if (
+         slow === null 
+          || fast === null
+          || fast.next === null
+     ) {
+         return false
+     }
+     
+     // slow每次走一步
+      slow = slow.next
+      // fast每次走两步
+      fast = fast.next.next
+  }
+
+  return true
+};
